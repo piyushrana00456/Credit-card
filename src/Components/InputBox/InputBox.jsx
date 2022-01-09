@@ -6,7 +6,6 @@ export const InputBox = ({ length, perBox, onChange }) => {
   const [values, setValues] = useState(new Array(length).fill(""));
   const elements = useRef(new Array(length).fill(0));
   console.log(elements, values[0]);
-  console.log("arr:", elements.current);
 
   const handleChange = (value, index) => {
     const val = [...values];
@@ -16,7 +15,7 @@ export const InputBox = ({ length, perBox, onChange }) => {
     if (value.length > 0 && value.length === perBox && index < length - 1) {
       elements.current[index + 1].focus();
     }
-    console.log("val:", val);
+    onChange(val.join(""));
   };
 
   const handleBackSpace = (value, index) => {
@@ -24,6 +23,14 @@ export const InputBox = ({ length, perBox, onChange }) => {
       elements.current[index - 1].focus();
     }
     const val = [...values];
+    val[index] = value;
+    setValues(val);
+    onChange(val.join(""));
+  };
+
+  const handlePaste = (e) => {
+    e.preventDefault();
+    console.log(e.clipboardData.getData("Text"));
   };
 
   return (
@@ -39,4 +46,16 @@ export const InputBox = ({ length, perBox, onChange }) => {
       ))}
     </div>
   );
+};
+
+InputBox.prototypes = {
+  length: PropTypes.number.isRequired,
+  perBox: PropTypes.number,
+  label: PropTypes.string,
+  conChange: PropTypes.func,
+};
+
+InputBox.defaultProps = {
+  label: "Credit Card",
+  perBox: 1,
 };
