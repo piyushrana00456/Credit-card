@@ -1,0 +1,17 @@
+.card-container {
+  border: 1px solid lightgray;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.num {
+  margin-bottom: 15px;
+}
+
+.card-container button {
+  border: none;
+  background-color: blue;
+  color: white;
+  width: 60%;
+  height: 30px;
+  border-radius: 5px;
+}

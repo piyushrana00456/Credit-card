@@ -5,7 +5,6 @@ import { PinItem } from "../PinItem/PinItem";
 export const InputBox = ({ length, perBox, onChange }) => {
   const [values, setValues] = useState(new Array(length).fill(""));
   const elements = useRef(new Array(length).fill(0));
-  console.log(elements, values[0]);
 
   const handleChange = (value, index) => {
     const val = [...values];
